@@ -28,4 +28,3 @@ class GroupAdmin(admin.ModelAdmin):
     search_fields = ('slug',)
     list_filter = ('title',)
     empty_value_display = '-пусто-'
-
