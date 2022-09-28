@@ -2,9 +2,8 @@ from .models import Post, Group
 from django.shortcuts import get_object_or_404, render
 
 
-# Create your views here.
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.all()
     context = {
         'posts': posts,
     }
@@ -13,16 +12,10 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.all()
     context = {
         'group': group,
         'posts': posts,
     }
     template = 'posts/group_list.html'
     return render(request, template, context)
-
-
-# В урл мы ждем парметр, и нужно его прередать в функцию для использования
-def post_detail(request, pk):
-    template = 'posts/post_detail.html'
-    return render(request, template)

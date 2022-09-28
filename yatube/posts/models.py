@@ -12,7 +12,7 @@ class Group(models.Model):
     slug = models.SlugField(
         max_length=200,
         unique=True,
-        verbose_name='ЧПУ',
+        verbose_name='ID группы',
     )
     description = models.TextField(
         max_length=400,
@@ -21,14 +21,14 @@ class Group(models.Model):
 
     class Meta:
         verbose_name_plural = 'Группы'
-        verbose_name = 'Группу'
+        verbose_name = 'Группа'
 
     def __str__(self):
         return self.title
 
 
 class Post(models.Model):
-    objects = None
+
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -45,3 +45,7 @@ class Post(models.Model):
         verbose_name='Группа',
         help_text='Группа, к которой будет относиться пост'
     )
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name_plural = 'Посты'
+        verbose_name = 'Пост'
