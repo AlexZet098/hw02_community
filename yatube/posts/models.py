@@ -12,7 +12,7 @@ class Group(models.Model):
     slug = models.SlugField(
         max_length=200,
         unique=True,
-        verbose_name='ID группы',
+        verbose_name='Токен',
     )
     description = models.TextField(
         max_length=400,
@@ -45,8 +45,8 @@ class Post(models.Model):
         help_text='Группа, к которой будет относиться пост'
     )
 
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name_plural = 'Посты'
+        verbose_name = 'Пост'
 
-class Meta:
-    ordering = ['-pub_date']
-    verbose_name_plural = 'Посты'
-    verbose_name = 'Пост'
