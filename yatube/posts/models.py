@@ -46,6 +46,6 @@ class Post(models.Model):
     )
 
     class Meta:
-        ordering = tuple('-pub_date')
+        ordering = ('-pub_date',)
         verbose_name_plural = 'Посты'
         verbose_name = 'Пост'
