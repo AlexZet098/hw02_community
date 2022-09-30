@@ -12,7 +12,7 @@ class Group(models.Model):
     slug = models.SlugField(
         max_length=200,
         unique=True,
-        verbose_name='Токен',
+        verbose_name='Слаг',
     )
     description = models.TextField(
         max_length=400,
@@ -46,6 +46,6 @@ class Post(models.Model):
     )
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = tuple('-pub_date')
         verbose_name_plural = 'Посты'
         verbose_name = 'Пост'
